@@ -25,13 +25,12 @@ Daily notes are used to take quick memos, and fill out various inline dataview t
 ![image](https://user-images.githubusercontent.com/50339059/156691741-5f827d03-3f41-4216-95a6-3b9316c80304.png)
 
 ### Weekly Notes
-Weekl notes are used as a bigger picture of a period of your life. They link automatically to all days of the week, and has a fully automated _Overview_ section where you can see a graph and dataview table of the trackers you choose.
+Weekly notes are used as a bigger picture of a period of your life. They link automatically to all days of the week, and has a fully automated _Overview_ section where you can see a graph and dataview table of the trackers you choose. The memos in your daily notes get pulled into the _Daily Memos_ section so that you can see everything at a glance.
 
 ![image](https://user-images.githubusercontent.com/50339059/156692722-07407996-9c68-41a8-a801-e84402461ff9.png)
 
 ### Monthly/Quarterly/Yearly Notes
-As I don't really have a use case for these types of periodic notes, I doubt that I will make templates for them. If the request is high enough however, I will consider, and perhaps adopt it in my own workflow. The memos in your daily notes get pulled into the _Daily Memos_ section so that you can see everything at a glance.
-
+As I don't really have a use case for these types of periodic notes, I doubt that I will make templates for them. If the request is high enough however, I will consider, and perhaps adopt it in my own workflow.
 ___
 ### Support me!
 Check out my other stuff:
