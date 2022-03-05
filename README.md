@@ -15,6 +15,7 @@ With all that out of the way, have fun!
 - [Dynamic Table of Contents](https://github.com/Aidurber/obsidian-plugin-dynamic-toc)
 - [Dataview](https://github.com/blacksmithgu/obsidian-dataview) (_ensure JS queries are enabled_)
 - [Obsidian Charts](https://github.com/phibr0/obsidian-charts)
+- [Periodic Notes](https://github.com/liamcain/obsidian-periodic-notes)
 - [Tasks](https://github.com/schemar/obsidian-tasks)
 - [Templater](https://github.com/SilentVoid13/Templater)
 
