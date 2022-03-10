@@ -5,7 +5,7 @@ banner_icon: 📆
 
 # <% tp.date.now("YYYY-MM [Week] WW") %>
 
-[[<% tp.date.now("YYYY-MM", -7) %> Week <% tp.date.now("WW", -7) %>|↶ Previous Week]] | [[<% tp.date.now("YYYY-MM", 7) %> Week <% tp.date.now("WW", 7) %>|Following Week ↷]]
+[[<% tp.date.now("YYYY [Week] WW", -7) %>|↶ Previous Week]] | [[<% tp.date.now("YYYY [Week] WW", 7) %>|Following Week ↷]]
 
 **Metadata:**
 - Created:: <% tp.date.now("YYYY-MM-DD @ HH:mm") %>
@@ -114,7 +114,7 @@ TABLE WITHOUT ID
 	panic AS "🌪️",
 	working-on AS "✏️",
 	money-spent AS "💸",
-	martial-arts AS "🥊",
+	martial-arts AS "🥋",
 	weather AS "☀️",
 	prayer AS "🕋"
 FROM "01 Personal/01.01 Periodic Notes"
