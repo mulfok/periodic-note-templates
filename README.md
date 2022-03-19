@@ -14,11 +14,18 @@ With all that out of the way, have fun!
 ## Required Plugins
 - [Dynamic Table of Contents](https://github.com/Aidurber/obsidian-plugin-dynamic-toc)
 - [Dataview](https://github.com/blacksmithgu/obsidian-dataview) (_ensure JS queries are enabled_)
+- [Obsidian Banners](https://github.com/noatpad/obsidian-banners)
 - [Obsidian Charts](https://github.com/phibr0/obsidian-charts)
 - [Periodic Notes](https://github.com/liamcain/obsidian-periodic-notes)
 - [Tasks](https://github.com/schemar/obsidian-tasks)
 - [Templater](https://github.com/SilentVoid13/Templater)
 
+___
+### Setup
+After installing the plugins required for these notes and configuring them, there are a couple other things that you may want to change too.
+
+#### Banner Images
+You may notice that in the examples in this repo, there are banners that compliment the notes. By default, they are set as `![[<% tp.date.now("YYYY MMMM") %> Weekly Banner.jpg]]` in the template's frontmatter. When generating a new daily note, it will be translated to `![[2022 March Weekly Banner.jpg]]`. I personally like to have different banners for each month of the year, so I have a small backlog of chronologically named banners.
 ___
 ### Daily Notes
 Daily notes are used to take quick memos, and fill out various inline dataview trackers. They also manage tasks, and allow you to keep a simple view of what's to come, what's to be done, and such. They're quite nice to look at, and having a couple open at a time isn't an eyesore.
@@ -30,9 +37,15 @@ Weekly notes are used as a bigger picture of a period of your life. They link au
 
 ![image](https://user-images.githubusercontent.com/50339059/156692722-07407996-9c68-41a8-a801-e84402461ff9.png)
 
+Concerning the weekly note's graph, the JS code rendering it has the path to daily notes as `dv.current().file.folder`. This assumes that your weekly notes are in the same folder as your daily notes. If you're like me, and sort your daily notes into folders chronologically, you could change the path to `"02 Personal/02.01 Periodic Notes/2022/Daily/03 March"` or similar.
+
 ### Monthly/Quarterly/Yearly Notes
 As I don't really have a use case for these types of periodic notes, I doubt that I will make templates for them. If the request is high enough however, I will consider, and perhaps adopt it in my own workflow.
 ___
+### Attribution
+Huge thanks to the following people for...
+- [Olivier Carizzoni](https://github.com/oliviercarizzoni): Improved graph code
+
 ### Support me!
 Check out my other stuff:
 - [Absolve](https://github.com/mulfok/obsidian-absolve)
