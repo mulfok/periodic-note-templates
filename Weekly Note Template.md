@@ -36,72 +36,59 @@ ___
 
 ### Overview
 ```dataviewjs
-var one = undefined;
-one = dv.page("<% tp.date.weekday("YYYY-MM-DD", 0) %>");
-if (one==undefined) { one = 0; }
+const DAILY_NOTES_PATH = dv.current().file.folder;
+const DATASET_TEMPLATE = {
+	label: "Default",
+	backgroundColor: 'rgba(255, 99, 132, 0.2)',
+	borderColor: 'rgba(255, 99, 132, 1)',
+	borderWidth: 1,
+	fill: true,
+	tension: 0.2
+}
+const DAY_ATTRIBUTES = new Map([
+	['panic', {
+		label: 'Panic',
+	}],
+	['money-spent', {
+		label : 'Money Spent (£)',
+		backgroundColor: 'rgba(85, 174, 229, 0.2)',
+		borderColor: 'rgba(85, 174, 229, 1)',
+	}],
+	['prayer', {
+		label : 'Prayer',
+		backgroundColor: 'rgba(255, 211, 101, 0.2)',
+		borderColor: 'rgba(255, 211, 101, 1)',
+	}],
+	['weather', {
+		label : 'Weather (°C)',
+		backgroundColor: 'rgba(92, 197, 193, 0.2)',
+		borderColor: 'rgba(92, 197, 193, 1)',
+	}],
+]);
 
-var two = undefined;
-two = dv.page("<% tp.date.weekday("YYYY-MM-DD", 1) %>");
-if (two==undefined) { two = 0; }
+const getDaysPages = () => {
+	const startOfWeek = DateTime.now().startOf('week'); 
+	const getDayPage = dayNum => dv.page(`${DAILY_NOTES_PATH}/${startOfWeek.plus({ days : dayNum }).toISODate()}`);
+	return Array.from({length : 7}, (c,i) => getDayPage(i) || 0)
+};
 
-var thr = undefined;
-thr = dv.page("<% tp.date.weekday("YYYY-MM-DD", 2) %>");
-if (thr==undefined) { thr = 0; }
-
-var fou = undefined;
-fou = dv.page("<% tp.date.weekday("YYYY-MM-DD", 3) %>");
-if (fou==undefined) { fou = 0; }
-
-var fiv = undefined;
-fiv = dv.page("<% tp.date.weekday("YYYY-MM-DD", 4) %>");
-if (fiv==undefined) { fiv = 0; }
-
-var six = undefined;
-six = dv.page("<% tp.date.weekday("YYYY-MM-DD", 5) %>");
-if (six==undefined) { six = 0; }
-
-var sev = undefined;
-sev = dv.page("<% tp.date.weekday("YYYY-MM-DD", 6) %>");
-if (sev==undefined) { sev = 0; }
+const generateDatasets = (map, template) => {
+	const newMap = new Map([...map.entries()]);
+	const daysPages = getDaysPages();
+	const applyDefault = (def, obj) => Object.assign({}, def, obj);
+	const addDataChart = (key, obj) => ({...obj, data : daysPages.map(p => p[key])});
+	for (let [key, props] of newMap.entries()) {
+		newMap.set(key, applyDefault(template, addDataChart(key, props)));
+	}
+	return [...newMap.values()];
+}
 
 const chartData = {
-    type: 'line',
-    data: {
-        labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        datasets: [{
-            label: "Panic",
-            data: [one.panic, two.panic, thr.panic, fou.panic, fiv.panic, six.panic, sev.panic],
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgba(255, 99, 132, 1)',
-            borderWidth: 1,
-			fill: true,
-			tension: 0.2
-        },	{
-			label: "Money Spent (£)",
-			data: [one["money-spent"], two["money-spent"], thr["money-spent"], fou["money-spent"], fiv["money-spent"], six["money-spent"], sev["money-spent"]],
-			backgroundColor: 'rgba(85, 174, 229, 0.2)',
-            borderColor: 'rgba(85, 174, 229, 1)',
-            borderWidth: 1,
-			fill: true,
-			tension: 0.2
-		}, {
-			label: "Prayer",
-			data: [one.prayer, two.prayer, thr.prayer, fou.prayer, fiv.prayer, six.prayer, sev.prayer],
-			backgroundColor: 'rgba(255, 211, 101, 0.2)',
-            borderColor: 'rgba(255, 211, 101, 1)',
-            borderWidth: 1,
-			fill: true,
-			tension: 0.2
-		}, {
-			label: "Weather (°C)",
-			data: [one.weather, two.weather, thr.weather, fou.weather, fiv.weather, six.weather, sev.weather],
-			backgroundColor: 'rgba(92, 197, 193, 0.2)',
-            borderColor: 'rgba(92, 197, 193, 1)',
-            borderWidth: 1,
-			fill: true,
-			tension: 0.2
-		}],
-    }
+	type: 'line',
+	data: {
+		labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+		datasets: generateDatasets(DAY_ATTRIBUTES, DATASET_TEMPLATE),
+	}
 }
 
 window.renderChart(chartData, this.container);
