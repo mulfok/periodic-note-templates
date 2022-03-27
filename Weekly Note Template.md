@@ -36,7 +36,7 @@ ___
 
 ### Overview
 ```dataviewjs
-const DAILY_NOTES_PATH = dv.current().file.folder;
+const DAILY_NOTES_PATH = "02 Personal/02.01 Periodic Notes/<% tp.date.now("YYYY") %>/Daily/<%tp.date.now("MM MMMM")%>";
 const DATASET_TEMPLATE = {
 	label: "Default",
 	backgroundColor: 'rgba(255, 99, 132, 0.2)',
@@ -67,7 +67,7 @@ const DAY_ATTRIBUTES = new Map([
 ]);
 
 const getDaysPages = () => {
-	const startOfWeek = DateTime.now().startOf('week'); 
+	const startOfWeek = dv.date("<% tp.date.now('YYYY-MM-DD') %>").startOf('week'); 
 	const getDayPage = dayNum => dv.page(`${DAILY_NOTES_PATH}/${startOfWeek.plus({ days : dayNum }).toISODate()}`);
 	return Array.from({length : 7}, (c,i) => getDayPage(i) || 0)
 };
@@ -104,8 +104,8 @@ TABLE WITHOUT ID
 	martial-arts AS "🥋",
 	weather AS "☀️",
 	prayer AS "🕋"
-FROM "01 Personal/01.01 Periodic Notes"
-WHERE week = "<% tp.date.now("YYYY [Week] WW") %>"
+FROM "02 Personal/02.01 Periodic Notes"
+WHERE week = [[<% tp.date.now("YYYY [Week] WW") %>]]
 SORT file.name ASC
 ```
 
