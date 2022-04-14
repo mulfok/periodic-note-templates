@@ -28,28 +28,28 @@ const DAY_ATTRIBUTES = new Map([
 	}],
 ]);
 
-const getDaysPages = () => {
-	const startOfWeek = DateTime.now().startOf('week'); 
-	const getDayPage = dayNum => dv.page(`${DAILY_NOTES_PATH}/${startOfWeek.plus({ days : dayNum }).toISODate()}`);
-	return Array.from({length : 7}, (c,i) => getDayPage(i) || 0)
-};
-
-const generateDatasets = (map, template) => {
-	const newMap = new Map([...map.entries()]);
-	const daysPages = getDaysPages();
-	const applyDefault = (def, obj) => Object.assign({}, def, obj);
-	const addDataChart = (key, obj) => ({...obj, data : daysPages.map(p => p[key])});
+const datasets = (() => {
+	const startOfWeek = dv.date("<% tp.date.now('YYYY-MM-DD') %>").startOf('week'); 
+	const getDayPage = dayNum => dv.page(
+			`${DAILY_NOTES_PATH}/${startOfWeek.plus({days: dayNum}).toISODate()}`
+		);
+	const daysPages = Array.from({length : 7}, (c,i) => getDayPage(i) || 0);
+	const newMap = new Map([...DAY_ATTRIBUTES.entries()]);
+	
 	for (let [key, props] of newMap.entries()) {
-		newMap.set(key, applyDefault(template, addDataChart(key, props)));
+		newMap.set(key, Object.assign(
+			{}, DATASET_TEMPLATE, props, {data: daysPages.map(p => p[key])}
+			));
 	}
+	
 	return [...newMap.values()];
-}
+})();
 
 const chartData = {
 	type: 'line',
 	data: {
 		labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-		datasets: generateDatasets(DAY_ATTRIBUTES, DATASET_TEMPLATE),
+		datasets,
 	}
 }
 
