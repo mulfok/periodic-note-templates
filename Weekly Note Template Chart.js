@@ -30,9 +30,8 @@ const DAY_ATTRIBUTES = new Map([
 
 const datasets = (() => {
 	const startOfWeek = dv.date("<% tp.date.now('YYYY-MM-DD') %>").startOf('week'); 
-	const getDayPage = dayNum => dv.page(
-			`${DAILY_NOTES_PATH}/${startOfWeek.plus({days: dayNum}).toISODate()}`
-		);
+	const getDayPage = dayNum => dv.pages(`"${DAILY_NOTES_PATH}"`).find(
+		p => p.file.name == startOfWeek.plus({days: dayNum}).toISODate());
 	const daysPages = Array.from({length : 7}, (c,i) => getDayPage(i) || 0);
 	const newMap = new Map([...DAY_ATTRIBUTES.entries()]);
 	
