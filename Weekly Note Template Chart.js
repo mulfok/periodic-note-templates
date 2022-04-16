@@ -7,41 +7,40 @@ const DATASET_TEMPLATE = {
 	fill: true,
 	tension: 0.2
 }
-const DAY_ATTRIBUTES = new Map([
-	['panic', {
+const DAY_ATTRIBUTES = {
+	'panic': {
 		label: 'Panic',
-	}],
-	['money-spent', {
+	},
+	'money-spent': {
 		label : 'Money Spent (£)',
 		backgroundColor: 'rgba(85, 174, 229, 0.2)',
 		borderColor: 'rgba(85, 174, 229, 1)',
-	}],
-	['prayer', {
+	},
+	'prayer': {
 		label : 'Prayer',
 		backgroundColor: 'rgba(255, 211, 101, 0.2)',
 		borderColor: 'rgba(255, 211, 101, 1)',
-	}],
-	['weather', {
+	},
+	'weather': {
 		label : 'Weather (°C)',
 		backgroundColor: 'rgba(92, 197, 193, 0.2)',
 		borderColor: 'rgba(92, 197, 193, 1)',
-	}],
-]);
+	},
+};
 
 const datasets = (() => {
 	const startOfWeek = dv.date("<% tp.date.now('YYYY-MM-DD') %>").startOf('week'); 
 	const getDayPage = dayNum => dv.pages(`"${DAILY_NOTES_PATH}"`).find(
 		p => p.file.name == startOfWeek.plus({days: dayNum}).toISODate());
 	const daysPages = Array.from({length : 7}, (c,i) => getDayPage(i) || 0);
-	const newMap = new Map([...DAY_ATTRIBUTES.entries()]);
+	let datasets = {};
 	
-	for (let [key, props] of newMap.entries()) {
-		newMap.set(key, Object.assign(
-			{}, DATASET_TEMPLATE, props, {data: daysPages.map(p => p[key])}
-			));
+	for (let [attr, props] of Object.entries(DAY_ATTRIBUTES)) {
+		datasets[attr] = Object.assign({}, DATASET_TEMPLATE, props, 
+			{data: daysPages.map(p => p[attr])});
 	}
 	
-	return [...newMap.values()];
+	return Object.values(datasets);
 })();
 
 const chartData = {
