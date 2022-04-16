@@ -7,37 +7,41 @@ const DATASET_TEMPLATE = {
 	fill: true,
 	tension: 0.2
 }
-const DAY_ATTRIBUTES = {
+const DAILY_ATTRIBUTES = {
 	'panic': {
 		label: 'Panic',
+		average: 4,
 	},
 	'money-spent': {
 		label : 'Money Spent (£)',
 		backgroundColor: 'rgba(85, 174, 229, 0.2)',
 		borderColor: 'rgba(85, 174, 229, 1)',
+		average: 4,
 	},
 	'prayer': {
 		label : 'Prayer',
 		backgroundColor: 'rgba(255, 211, 101, 0.2)',
 		borderColor: 'rgba(255, 211, 101, 1)',
+		average: 4,
 	},
 	'weather': {
 		label : 'Weather (°C)',
 		backgroundColor: 'rgba(92, 197, 193, 0.2)',
 		borderColor: 'rgba(92, 197, 193, 1)',
+		average: 4
 	},
 };
 
 const datasets = (() => {
 	const startOfWeek = dv.date("<% tp.date.now('YYYY-MM-DD') %>").startOf('week'); 
-	const getDayPage = dayNum => dv.pages(`"${DAILY_NOTES_PATH}"`).find(
+	const getWeeklyDay = dayNum => dv.pages(`"${DAILY_NOTES_PATH}"`).find(
 		p => p.file.name == startOfWeek.plus({days: dayNum}).toISODate());
-	const daysPages = Array.from({length : 7}, (c,i) => getDayPage(i) || 0);
+	const weeklydays = Array.from({length : 7}, (c,i) => getWeeklyDay(i) || 0);
 	let datasets = {};
 	
-	for (let [attr, props] of Object.entries(DAY_ATTRIBUTES)) {
+	for (let [attr, props] of Object.entries(DAILY_ATTRIBUTES)) {
 		datasets[attr] = Object.assign({}, DATASET_TEMPLATE, props, 
-			{data: daysPages.map(p => p[attr])});
+			{data: weeklydays.map(p => p[attr])});
 	}
 	
 	return Object.values(datasets);
