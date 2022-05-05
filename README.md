@@ -3,7 +3,7 @@ A set of periodic note templates for Obsidian.md.
 
 ![image](https://user-images.githubusercontent.com/50339059/166981554-4ccf8b94-6f33-4b78-9a4d-3252d54502a0.png)
 
-*Theme: [Viridian](https://github.com/mulfok/obsidian/viridian)*
+*Theme: [Viridian](https://github.com/mulfok/obsidian-viridian)*
 ___
 
 ## Before You Start...
@@ -37,15 +37,17 @@ Let's go about setting up this custom file.
 
 1. First, make sure that [CustomJS](https://github.com/samlewis0602/obsidian-custom-js) is installed in Obsidian.
 
-1. Once that's done, go to [Scripts/CustomJS](https://github.com/mulfok/periodic-note-templates/tree/main/Scripts/CustomJS) in this repo and download the `DvCharts.js` file.
+2. Once that's done, go to [Scripts/CustomJS](https://github.com/mulfok/periodic-note-templates/tree/main/Scripts/CustomJS) in this repo and download the `DvCharts.js` file.
 
-1. Once you have, move it into an appropriate location in your vault. I've put mine in `AA Utilities/AA.04 Scripts`.
-  - ![image](https://user-images.githubusercontent.com/50339059/166988703-a8c864b5-2cdc-4b9d-a595-a204e583c57c.png)
+3. Once you have, move it into an appropriate location in your vault. I've put mine in `AA Utilities/AA.04 Scripts`.
 
-1. Next, go to the CustomJS plugin settings and set **Folder** to the path where you put the JS file.
-  - ![image](https://user-images.githubusercontent.com/50339059/166989285-130c1cd9-9bce-4d84-a047-81dd70d81969.png)
+![image](https://user-images.githubusercontent.com/50339059/166988703-a8c864b5-2cdc-4b9d-a595-a204e583c57c.png)
 
-1. Reload Obsidian, and you'll be good to go!
+4. Next, go to the CustomJS plugin settings and set **Folder** to the path where you put the JS file.
+
+![image](https://user-images.githubusercontent.com/50339059/166989285-130c1cd9-9bce-4d84-a047-81dd70d81969.png)
+
+5. Reload Obsidian, and you'll be good to go!
 
 ### Graph Codeblock
 In the Weekly Note Templates's graph codeblock, you'll need to configure the `daysPath` found at the bottom of the file. For example, mine is set to `'02 Personal/02.01 Periodic Notes/<% tp.date.now("YYYY") %>/Daily/<% tp.date.now("MM MMMM") %>'`, which on compile gets turned into something like `02 Personal/02.01 Periodic Notes/2022/Daily/05 March`.
@@ -79,13 +81,14 @@ You can have any number of words in the field, but it must **always** be formatt
 Additionally, make sure that the quotation marks surrounding your fields are **not curled.** That means use these: `""` and not these: `“”`.
 
 ### Weekly Notes
-Weekly notes are used as a bigger picture of a period of your life. They link automatically to all days of the week, and has a fully automated _Overview_ section where you can see a graph and dataview table of the trackers you choose. The memos in your daily notes get pulled into the _Daily Memos_ section so that you can see everything at a glance.
+I use **Weekly Notes** to reflect on my week as a whole. It automatically pulls in all the Memos, Work Logs, and Dataview fields from its corresponding Daily Notes.
 
-![image](https://user-images.githubusercontent.com/50339059/156692722-07407996-9c68-41a8-a801-e84402461ff9.png)
+![image](https://user-images.githubusercontent.com/50339059/166998012-6359d730-1601-497d-af7b-6d5542cc3ef6.png)
 
-Concerning the weekly note's graph, the JS code rendering it has the path to daily notes as `dv.current().file.folder`. This assumes that your weekly notes are in the same folder as your daily notes. If you're like me, and sort your daily notes into folders chronologically, you could change the path to `"02 Personal/02.01 Periodic Notes/2022/Daily/03 March"` or similar.
+This note functions quite well on its own, and requires little interaction to change things.
 
 ___
+
 ## Attribution
 Huge thanks to the following people for...
 - ❤️ [Olivier Carizzoni](https://github.com/oliviercarizzoni): Improved graph code and dedicated custom JS
