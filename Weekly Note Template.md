@@ -22,7 +22,7 @@ style: number
 
 ___
 
-### Memos
+## Memos
 - [[<% tp.date.weekday("YYYY-MM-DD", 0) %>|Monday]]
 	![[<% tp.date.weekday("YYYY-MM-DD", 0) %>#^memo-link]]
 - [[<% tp.date.weekday("YYYY-MM-DD", 1) %>|Tuesday]]
@@ -38,7 +38,7 @@ ___
 - [[<% tp.date.weekday("YYYY-MM-DD", 6) %>|Sunday]]
 	![[<% tp.date.weekday("YYYY-MM-DD", 6) %>#^memo-link]]
 
-### Work Log
+## Work Log
 - [[<% tp.date.weekday("YYYY-MM-DD", 0) %>|Monday]]
 	![[<% tp.date.weekday("YYYY-MM-DD", 0) %>#^work-link]]
 - [[<% tp.date.weekday("YYYY-MM-DD", 1) %>|Tuesday]]
@@ -54,8 +54,8 @@ ___
 - [[<% tp.date.weekday("YYYY-MM-DD", 6) %>|Sunday]]
 	![[<% tp.date.weekday("YYYY-MM-DD", 6) %>#^work-link]] 
 
-### Overview
-#### Week Statistics
+## Overview
+### Week Statistics
 ```dataviewjs
 const daysPath = dv.current().file.folder;
 
@@ -116,7 +116,7 @@ WHERE week = [[<% tp.date.now("YYYY [Week] WW") %>]]
 SORT file.name ASC
 ```
 
-#### Habits
+### Habits
 ```dataview
 TABLE WITHOUT ID
 	file.link AS "Day",
@@ -133,7 +133,7 @@ WHERE week = [[<% tp.date.now("YYYY [Week] WW") %>]]
 SORT file.name ASC
 ```
 
-#### Learnt Words
+### Learnt Words
 ```dataviewjs
 dv.table(
 	["Learnt Word", "Meaning"],
@@ -156,7 +156,7 @@ dv.table(
 )
 ```
 
-#### Weather
+### Weather
 ```dataview
 TABLE WITHOUT ID
 	file.link AS Day,

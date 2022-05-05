@@ -22,18 +22,18 @@ style: number
 
 ___
 
-### Memos
+## Memos
 - …
 
 ^memo-link
 
-### Work Log
+## Work Log
 - …
 
 ^work-link
 
-### Trackers
-#### Statistics
+## Trackers
+### Statistics
 - Feeling:: 
 - Learnt Word:: 
 - Money Spent:: 
@@ -42,7 +42,7 @@ ___
 - Steps:: 
 - Hours Worked:: 
 
-#### Habits
+### Habits
 - Anki:: 
 - Coffee:: 
 - Exercise:: 
@@ -52,7 +52,7 @@ ___
 - Shower::
 - Typing:: 
 
-#### Weather
+### Weather
 - Temperature:: 
 - Feels Like:: 
 - Weather:: 
@@ -60,8 +60,8 @@ ___
 - Wind Speed:: 
 - Observed:: 
 
-### Tasks
-#### Not Done
+## Tasks
+### Not Done
 ```tasks
 not done
 hide backlink
@@ -71,5 +71,5 @@ heading does not include Day Planner
 heading does not include Before Heading Out…
 ```
 
-#### New Today
+### New Today
 - [ ]
