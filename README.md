@@ -11,6 +11,8 @@ This collection of templates suit my **current** workflow. I supply them here an
 
 These templates also assume you know how to use the plugins required. If you don't, please refer to the instructions on their repos--I unfortunately don't have the time to write a full-blown tutorial on how to install each and every single plugin.
 
+> By the way, if you're having a problem and would like some help from me, please DM me on _Discord._ Just requesting this so you can get help quicker, since I only open Github like, once a day. 😆
+
 ## Required Plugins
 - [CustomJS](https://github.com/samlewis0602/obsidian-custom-js)
 - [Dynamic Table of Contents](https://github.com/Aidurber/obsidian-plugin-dynamic-toc)
