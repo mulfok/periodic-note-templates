@@ -91,7 +91,7 @@
         } = args;
     
         const datasets = (() => {
-            const startOfWeek = dv.date(date).startOf('week');
+            const startOfWeek = dv.date("sow");
             const getWeeklyDay = dayNum => dv.pages(`"${daysPath}"`).find(
                 p => p.file.name == startOfWeek.plus({ days: dayNum }).toFormat(dayFormat));
             const weeklydays = Array.from({ length: 7 }, (c, i) => getWeeklyDay(i) || 0);
