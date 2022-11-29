@@ -1,5 +1,5 @@
 ---
-<% tp.file.include("[[Frontmatter Template]]") %>
+tags:
  - "#calendar/weekly/<% tp.date.now('YYYY') %>"
 
 banner: "![[<% tp.date.now('YYYY MMMM') %> Weekly Banner.jpg]]"
