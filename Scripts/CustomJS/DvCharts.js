@@ -69,7 +69,15 @@
      * @param {object} args.template - default template for completing datasets metadatas
      * @param {string} args.type - set it to **'average'** to display average data in chart
      * @param {string} args.date - date in YYYY-MM-DD format from which weekly days will be retrieved
+	 * 	getMonday(d) {
+	 *	d = new Date(d);
+	 *	var day = d.getDay(),
+	 *	diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
+	 *	return new Date(d.setDate(diff));
+}
      */
+
+	
     renderWeeklyChart(args) {
 
         const {
@@ -89,19 +97,28 @@
             type,
             date
         } = args;
-    
+
+
         const datasets = (() => {
-            const startOfWeek = dv.date("sow");
+		
+		const startOfWeek =dv.date(date).startOf('week');
             const getWeeklyDay = dayNum => dv.pages(`"${daysPath}"`).find(
                 p => p.file.name == startOfWeek.plus({ days: dayNum }).toFormat(dayFormat));
+				
+				
             const weeklydays = Array.from({ length: 7 }, (c, i) => getWeeklyDay(i) || 0);
+					
+			
+			
+			
             const getData = (attr, props) => weeklydays.map(p =>
                 (type == 'average') ? (p[attr] / props.average * 100) || 0 : p[attr]);
-            let datasets = {};
-    
-            for (let [attr, props] of Object.entries(attributes)) {
-                datasets[attr] = Object.assign({}, template, props, {data: getData(attr, props)});
-            }
+		
+		let datasets = {};
+
+		for (let [attr, props] of Object.entries(attributes)) {
+			datasets[attr] = Object.assign({}, template, props, {data: getData(attr, props)});
+		}
     
             return Object.values(datasets);
         })();
@@ -116,4 +133,8 @@
     
         window.renderChart(chartData, context.container);
     }
+ 
+
+	
 }
+
